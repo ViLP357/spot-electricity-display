@@ -7,7 +7,8 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-
+#include <LOLIN_I2C_BUTTON.h>
+#include <time.h> 
 
 //tarvitaan rajapintaaan
 #include <ESP8266HTTPClient.h>
@@ -20,14 +21,17 @@
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
-#define OLED_RESET -1  // Reset pin
+#define OLED_RESET 0  // Reset pin
 #define SCREEN_ADDRESS 0x3C
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+//Adafruit_SSD1306 display(OLED_RESET);
+
+
 
 const char* ssid = SECRET_SSID;
 const char* password = SECRET_PASSWORD;
-unsigned long lastRequest = 18000;
-const long interval = 300000;
+unsigned long lastRequest = -1;
+const long interval = 90000;
 
 WiFiServer server(80);
 
@@ -56,17 +60,19 @@ void getData() {
       float price = doc["PriceWithTax"];
 
       display.clearDisplay();
-      display.drawPixel(50, 50, WHITE);
+  
       
       display.setTextSize(1);
       display.setCursor(32, 20);
-      display.print("Price: ");
+      display.print("Price now: ");
 
       display.setTextSize(2);
       display.setCursor(32, 40);
 
       display.print(price);
+      Serial.println(price);
       display.display();
+      
       http.end();
     } else {
       Serial.println("HTTP request failed!");
@@ -74,8 +80,23 @@ void getData() {
   }
 }
 
+int getMinutes() {
+  configTime(3*3600, 0, "pool.ntp.org");
+  struct tm timeinfo;
+  if (!getLocalTime(&timeinfo)) {
+    Serial.print("ei onnistunut");
+    return 0;
+  }
+  int minuutti = timeinfo.tm_min;
+  return minuutti;
+}
+
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
+  delay(5000);
+
+  Serial.print("Starting");
+
   if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
     Serial.println(F("SSD1306 allocation failed"));
     for (;;)
@@ -83,6 +104,9 @@ void setup() {
   }
   display.clearDisplay();
   //pinMode(LED, OUTPUT);
+  display.print("Starting");
+  display.display();
+
 
   Serial.print("Connecting");
   WiFi.begin(ssid, password);
@@ -95,29 +119,19 @@ void setup() {
   server.begin();  // Starts the Server
   Serial.println("Server started");
 
-  // Display Inverted Text
-  display.setTextColor(WHITE);  // 'inverted' text
-  display.setCursor(60, 20);
-  display.println("Hello");
-  display.setCursor(60, 35);
-  display.println("world!");
-  display.display();
-  delay(2000);
   display.clearDisplay();
-
-  // put your setup code here, to run once:
-  getData();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
- // Serial.print("hellsso");
- // delay(1000);
- // display.clearDisplay();
-  if (millis() - lastRequest >= interval) {
+
+  delay(1000);
+  //display.clearDisplay();
+  if (lastRequest == -1 || (getMinutes()%15 == 0 && millis() - lastRequest >= interval)) {
     lastRequest = millis();
-    getData();
+
+    getData(); //make a new requsto to APi
     Serial.print("new request");
+   
   }
 }
 
