@@ -31,7 +31,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 const char* ssid = SECRET_SSID;
 const char* password = SECRET_PASSWORD;
 unsigned long lastRequest = 0;
-const long interval = 90000;
+const long interval = 60000;
 
 WiFiServer server(80);
 
@@ -125,7 +125,7 @@ void setup() {
 void loop() {
 
   delay(1000);
-  //display.clearDisplay();
+
   if (lastRequest == 0 || (getMinutes()%15 == 0 && millis() - lastRequest >= interval)) {
     lastRequest = millis();
 
