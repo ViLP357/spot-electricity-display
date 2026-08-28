@@ -93,19 +93,22 @@ int getMinutes() {
 
 void setup() {
   Serial.begin(115200);
-  delay(5000);
+  
 
   Serial.print("Starting");
 
-  if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
     Serial.println(F("SSD1306 allocation failed"));
-    for (;;)
-      ;  // Don't proceed, loop forever
+    for(;;);
   }
+
   display.clearDisplay();
-  //pinMode(LED, OUTPUT);
-  display.print("Starting");
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(40, 30);
+  display.println("Toimii... :)!");
   display.display();
+  //naytto
 
 
   Serial.print("Connecting");
