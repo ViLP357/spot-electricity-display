@@ -93,7 +93,6 @@ int getMinutes() {
 
 void setup() {
   Serial.begin(115200);
-  
 
   Serial.print("Starting");
 
@@ -104,9 +103,9 @@ void setup() {
 
   display.clearDisplay();
   display.setTextSize(1);
-  display.setTextColor(SSD1306_WHITE);
+  display.setTextColor(SSD1306_WHITE); //important
   display.setCursor(40, 30);
-  display.println("Toimii... :)!");
+  display.println("Loading...");
   display.display();
   //naytto
 
@@ -126,7 +125,6 @@ void setup() {
 }
 
 void loop() {
-
   delay(1000);
 
   if (lastRequest == 0 || (getMinutes()%15 == 0 && millis() - lastRequest >= interval)) {
@@ -134,7 +132,6 @@ void loop() {
 
     getData(); //make a new requsto to APi
     Serial.print("new request");
-   
   }
 }
 
