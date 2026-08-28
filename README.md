@@ -28,7 +28,7 @@ My idea with this project is that you could mount it on your wall and check easi
 
 <img width="490" height="313" alt="Näyttökuva 2026-08-27 195733" src="https://github.com/user-attachments/assets/6d68999f-e3ea-44a4-8c87-cf50588453d5" />
 
-
+> Tinkercad didn't have the exact board I have so I used one that was as close as possible.
 
 ### Demo
 Data when I filmed this:
