@@ -1,11 +1,11 @@
 
 
 # spot-electricity-display
-A small arduino project for displaying spot electricity price
-> This project uses API that has price in Finland 🇫🇮. It should be quite easy to switch API that is used.
+A small arduino project for displaying spot electricity price ⚡
+> This project uses API that has price in Finland 🇫🇮. It should be quite easy to switch API that being is used.
 
 ### Electronics I used:
-- Wemos Lolin D1 mini pro -board
+- Wemos Lolin D1 mini pro -board [link](https://www.wemos.cc/en/latest/d1/d1_mini_pro.html)
 - a battery case (used if the board isn't connected to a computer)
 
 ### How to set up/flash
@@ -13,13 +13,17 @@ Install all necessary libraries:
 - Adafruit Gfx
 - Adafruit SSD1306
 
-Crete a file named secret.h to the folder main and fill with this content. Replace placeholders with your wifi name and password.
+
+Crete a file named secret.h to the folder main and fill with this content. Replace placeholders with your wifi name and password 🛜.
 ```
 #define SECRET_SSID = "your_wifi_name_here"
 #define SECRET_PASSWORD = "your_wifi_password_here"
 ```
 I used Arduino IDE for developing, so then I pressed "upload" to upload the code.
 
+#### Wiring
+- No external components, just battery connected.
+  
 ### Casing for electronics
 I made this simple casing with tinkercad. I haven't tried to print it and I made it just for a reference how it could look like.
 My idea with this project is that you could mount it on your wall and check easily current electricity price.
@@ -29,6 +33,10 @@ My idea with this project is that you could mount it on your wall and check easi
 <img width="490" height="313" alt="Näyttökuva 2026-08-27 195733" src="https://github.com/user-attachments/assets/6d68999f-e3ea-44a4-8c87-cf50588453d5" />
 
 > Tinkercad didn't have the exact board I have so I used one that was as close as possible.
+
+<img width="531" height="487" alt="image" src="https://github.com/user-attachments/assets/93c97128-426a-477c-b180-d54355844bc5" />
+
+How it could look like in real life. Perspectives failed but you get the idea of the size and where to put it.
 
 ### Demo
 Data when I filmed this:
