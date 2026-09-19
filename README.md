@@ -6,6 +6,7 @@ A small arduino project for displaying spot electricity price ⚡
 
 ### Electronics I used:
 - Wemos Lolin D1 mini pro -board [link](https://www.wemos.cc/en/latest/d1/d1_mini_pro.html)
+- OLED Screen [link](https://www.wemos.cc/en/latest/d1_mini_shield/oled_0_66.html)
 - a battery case (used if the board isn't connected to a computer)
 
 ### How to set up/flash
@@ -22,7 +23,7 @@ Crete a file named secret.h to the folder main and fill with this content. Repla
 I used Arduino IDE for developing, so then I pressed "upload" to upload the code.
 
 #### Wiring
-- No external components, just battery connected.
+- No external components other than the screen, just battery connected. The OLED Screen was already connected to the board with pin headers when I started. 
   
 ### Casing for electronics
 I made this simple casing with tinkercad. I haven't tried to print it and I made it just for a reference how it could look like.
