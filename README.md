@@ -2,7 +2,19 @@
 
 # spot-electricity-display
 A small arduino project for displaying spot electricity price ⚡
-> This project uses API that has price in Finland 🇫🇮. It should be quite easy to switch API that being is used.
+> This project uses API that has spot electricity price in Finland 🇫🇮. It should be quite easy to switch API that being is used.
+
+#### With spot-electricity-display you don't need to open an electricity price app to check current spot price.
+
+### Spot electricty explained (short version)
+Instead of a default electricity price the price changes every 1hr or 15 min. 
+The price depends, for example, on the amount of electricity available. For instance, more electricity can be generated in windy weather.
+It can save some money if electricity use can be timed on a cheap hour.
+
+## What does the code do?
+ - Connects to the given wifi network 
+ - When first powered, it takes a while to connect to wifi and fetch data (~15s)
+ - Then it automatically gets current electricity price every 15 min when a new price interval starts.
 
 ### Electronics I used:
 - Wemos Lolin D1 mini pro -board [link](https://www.wemos.cc/en/latest/d1/d1_mini_pro.html)
@@ -21,6 +33,10 @@ Crete a file named secret.h to the folder main and fill with this content. Repla
 #define SECRET_PASSWORD = "your_wifi_password_here"
 ```
 I used Arduino IDE for developing, so then I pressed "upload" to upload the code.
+
+### Common reasons why it doesn't work
+- No wifi name and password set
+- The wifi isn't turned on (if you're using your phones hot spot you might need to turn it on every time)
 
 #### Wiring
 - No external components other than the screen, just battery connected. The OLED Screen was already connected to the board with pin headers when I started. 
