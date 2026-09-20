@@ -2,7 +2,7 @@
 
 # spot-electricity-display
 A small arduino project for displaying spot electricity price ⚡
-> This project uses API that has spot electricity price in Finland 🇫🇮. It should be quite easy to switch API that being is used.
+> This project uses API that has spot electricity price in Finland 🇫🇮. It should be quite easy to switch API that is being used.
 
 #### With spot-electricity-display you don't need to open an electricity price app to check current spot price.
 
